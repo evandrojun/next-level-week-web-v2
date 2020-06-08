@@ -16,13 +16,15 @@ const ContainerMap: React.FC<Props> = (props) => {
       const { latitude, longitude } = position.coords;
 
       setSelectedPosition([latitude, longitude]);
+
+      props.selectedPositionCallback(latitude, longitude);
     });
   }, []);
 
   function handleMapClick(event: LeafletMouseEvent) {
     setSelectedPosition([event.latlng.lat, event.latlng.lng]);
 
-    props.selectedPositionCallback(event.latlng.lat, event.latlng.lng)
+    props.selectedPositionCallback(event.latlng.lat, event.latlng.lng);
   }
 
   return (
